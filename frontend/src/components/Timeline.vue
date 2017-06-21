@@ -1,18 +1,18 @@
 <template>
-  <div class="hello">
+  <div class="timeline">
     <h1>{{ msg }}</h1>
      <ul>
-      <li><router-link to="/timeline">Timeline</router-link></li>
+      <li><router-link to="/">Hello</router-link></li>
      </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'timeline',
   data () {
     return {
-      msg: 'Bienvenue sur Twitter'
+      msg: 'Bienvenue sur Timeline'
     }
   }
 }
