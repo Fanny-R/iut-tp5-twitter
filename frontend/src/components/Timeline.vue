@@ -11,19 +11,31 @@
 
 <script>
 import Tweet from './Tweet'
+import Vue from 'vue'
+import Resource from 'vue-resource'
+Vue.use(Resource)
 
-var tweet1 = {auteur: 'Bob', contenu: 'Blabla'}
-var tweet2 = {auteur: 'Roger', contenu: 'Blublu'}
-var tweet3 = {auteur: 'Simone', contenu: 'Blibli'}
+fetch
 export default {
   name: 'timeline',
   data () {
     return {
-      tweets: [ tweet1, tweet2, tweet3 ]
+      tweets: []
     }
   },
-  components: { Tweet }
-
+  components: { Tweet },
+  created () {
+    this.fetchTweets()
+  },
+  methods: {
+    fetchTweets: function () {
+      this.$http.get('http://localhost:8080/list').then(response => {
+        this.tweets = response.body
+      }, response => {
+        // error callback
+      })
+    }
+  }
 }
 </script>
 
