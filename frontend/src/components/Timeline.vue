@@ -3,7 +3,7 @@
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
       <div>Identifié en tant que {{ this.currentUser }}</div>
       <utilisateurs :utilisateurs="utilisateurs" @currentUser="onCurrentUserChange" />
-      <feed :tweets="tweets" :loading="isLoading" @retweeted="retweet"/>
+      <feed :tweets="tweets" :loading="isLoading" :currentUser="currentUser" @retweeted="retweet"/>
   </div>
 </template>
 
