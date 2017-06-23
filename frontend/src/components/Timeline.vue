@@ -1,6 +1,6 @@
 <template>
   <div class="timeline">
-      <feed :tweets="tweets"/>
+      <feed :tweets="tweets" :loading="isLoading"/>
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
     fetchTweets: function () {
       this.$http.get('http://localhost:8080/list').then(response => {
         this.tweets = response.body
+        this.isLoading = false
       }, response => {
         // error callback
       })
@@ -28,7 +29,8 @@ export default {
   },
   data () {
     return {
-      tweets: []
+      tweets: [],
+      isLoading: true
     }
   }
 }
