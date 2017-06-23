@@ -54,7 +54,7 @@ export default {
       })
     },
     canRetweet: function () {
-      if (this.tweet.auteur.handle === this.currentUser) {
+      if (this.tweet.auteur.handle === this.currentUser || !this.currentUser) {
         return false
       }
       return true
