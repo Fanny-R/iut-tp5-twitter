@@ -1,13 +1,17 @@
 <template>
   <div class="timeline">
       <ul>
-       <li v-for="tweet in tweets"> {{ tweet.auteur }} {{ tweet.contenu }}</li>
+       <li v-for="tweet in tweets">
+          <tweet :tweet="tweet"/>
+       </li>
       </ul>
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
   </div>
 </template>
 
 <script>
+import Tweet from './Tweet'
+
 var tweet1 = {auteur: 'Bob', contenu: 'Blabla'}
 var tweet2 = {auteur: 'Roger', contenu: 'Blublu'}
 var tweet3 = {auteur: 'Simone', contenu: 'Blibli'}
@@ -15,9 +19,11 @@ export default {
   name: 'timeline',
   data () {
     return {
-      tweets: [tweet1, tweet2, tweet3]
+      tweets: [ tweet1, tweet2, tweet3 ]
     }
-  }
+  },
+  components: { Tweet }
+
 }
 </script>
 
