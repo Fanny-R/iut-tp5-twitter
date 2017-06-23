@@ -1,7 +1,7 @@
 <template>
   <div class="timeline">
-      <feed :tweets="tweets" :loading="isLoading"/>
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
+      <feed :tweets="tweets" :loading="isLoading" @retweeted="retweet"/>
   </div>
 </template>
 
@@ -25,6 +25,9 @@ export default {
       }, response => {
         // error callback
       })
+    },
+    retweet: function (id) {
+      this.fetchTweets()
     }
   },
   data () {
