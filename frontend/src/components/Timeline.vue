@@ -1,7 +1,7 @@
 <template>
   <div class="timeline">
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
-      <div>Identifié en tant que {{ this.currentUser }}</div>
+      <div> <strong> {{ this.currentUser ?  'Identifié en tant que @' + this.currentUser : 'Identifiez vous :' }} </strong> </div>
       <utilisateurs :utilisateurs="utilisateurs" @currentUser="onCurrentUserChange" />
       <feed :tweets="tweets" :loading="isLoading" :currentUser="currentUser" @retweeted="retweet"/>
   </div>
