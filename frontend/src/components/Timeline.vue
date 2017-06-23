@@ -27,7 +27,11 @@ export default {
       })
     },
     retweet: function (id) {
-      this.fetchTweets()
+      for (var i = 0; i < this.tweets.length; i++) {
+        if (this.tweets[i].id === id) {
+          this.tweets[i].retweeters.push({handle: 'johndoe'})
+        }
+      }
     }
   },
   data () {

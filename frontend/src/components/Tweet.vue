@@ -42,7 +42,7 @@ export default {
     },
     retweet: function (id) {
       var formData = new FormData()
-      formData.append('utilisateur', 'pingu')
+      formData.append('utilisateur', 'johndoe')
       formData.append('tweet', id)
       this.$http.post('http://localhost:8080/retweet', formData, {responseType: 'text'}).then(response => {
         this.$emit('retweeted', id)
