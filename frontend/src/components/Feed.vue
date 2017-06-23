@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline">
+  <div class="feed">
     <div v-if="loading === true">
       Chargement des tweets en cours…
     </div>

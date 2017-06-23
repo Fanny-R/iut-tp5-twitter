@@ -1,21 +1,26 @@
 <template>
   <div class="timeline">
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
+      <div>Identifié en tant que {{ this.currentUser }}</div>
+      <utilisateurs :utilisateurs="utilisateurs" @currentUser="onCurrentUserChange" />
       <feed :tweets="tweets" :loading="isLoading" @retweeted="retweet"/>
   </div>
 </template>
 
 <script>
 import Feed from './Feed'
+import Utilisateurs from './Utilisateurs'
 import Vue from 'vue'
 import Resource from 'vue-resource'
 Vue.use(Resource)
 
 export default {
   name: 'timeline',
-  components: { Feed },
+  components: { Feed, Utilisateurs },
+  props: [ 'currentUser' ],
   created () {
     this.fetchTweets()
+    this.fetchUtilisateurs()
   },
   methods: {
     fetchTweets: function () {
@@ -32,6 +37,16 @@ export default {
           this.tweets[i].retweeters.push({handle: 'johndoe'})
         }
       }
+    },
+    fetchUtilisateurs: function () {
+      this.$http.get('http://localhost:8080/utilisateurs').then(response => {
+        this.utilisateurs = response.body
+      }, response => {
+        // error callback
+      })
+    },
+    onCurrentUserChange: function (currentUser) {
+      this.currentUser = currentUser
     }
   },
   data () {
