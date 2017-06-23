@@ -1,29 +1,19 @@
 <template>
   <div class="timeline">
-      <ul>
-       <li v-for="tweet in tweets">
-          <tweet :tweet="tweet"/>
-       </li>
-      </ul>
+      <feed :tweets="tweets"/>
       <router-link to="/"> Retourner sur la page d'accueil</router-link></li>
   </div>
 </template>
 
 <script>
-import Tweet from './Tweet'
+import Feed from './Feed'
 import Vue from 'vue'
 import Resource from 'vue-resource'
 Vue.use(Resource)
 
-fetch
 export default {
   name: 'timeline',
-  data () {
-    return {
-      tweets: []
-    }
-  },
-  components: { Tweet },
+  components: { Feed },
   created () {
     this.fetchTweets()
   },
@@ -34,6 +24,11 @@ export default {
       }, response => {
         // error callback
       })
+    }
+  },
+  data () {
+    return {
+      tweets: []
     }
   }
 }
