@@ -10,6 +10,7 @@
       <ul>
         <li class=button>
           <icon name="reply"/>
+            {{ tweet.retweeters.length }}
           <icon name="retweet"/>
           <icon name="heart"/>
           <icon name="envelope"/>
