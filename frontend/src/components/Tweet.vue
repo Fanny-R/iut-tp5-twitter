@@ -9,10 +9,15 @@
     <div>
       <ul>
         <li class=button>
+          <span v-if=canRetweet()>
+           <a @click="retweet(tweet.id)">
+             <icon name="retweet"/>
+           </a>
+          </span>
+          <span v-else>
+              <icon name="retweet"/>
+          </span>
           <icon name="reply"/> {{ tweet.retweeters.length }}
-          <a @click="retweet(tweet.id)">
-            <icon name="retweet"/>
-          </a>
           <icon name="heart"/>
           <icon name="envelope"/>
         </li>
@@ -42,12 +47,17 @@ export default {
     },
     retweet: function (id) {
       var formData = new FormData()
-      alert(this.currentUser)
       formData.append('utilisateur', this.currentUser)
       formData.append('tweet', id)
       this.$http.post('http://localhost:8080/retweet', formData, {responseType: 'text'}).then(response => {
         this.$emit('retweeted', id)
       })
+    },
+    canRetweet: function () {
+      if (this.tweet.auteur.handle === this.currentUser) {
+        return false
+      }
+      return true
     }
   }
 }
