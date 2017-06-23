@@ -57,6 +57,11 @@ export default {
       if (this.tweet.auteur.handle === this.currentUser || !this.currentUser) {
         return false
       }
+      for (var i = 0; i < this.tweet.retweeters.length; i++) {
+        if (this.tweet.retweeters[i].handle === this.currentUser) {
+          return false
+        }
+      }
       return true
     }
   }
